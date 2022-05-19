@@ -25,7 +25,7 @@ uint16_t *create_board(uint8_t rows, uint8_t cols, uint8_t init_value) {
 void print_board(uint8_t rows, uint8_t cols, uint16_t b[rows][cols]) {
 	for (uint8_t i = 0; i < rows; i++) {
 		for (uint8_t j = 0; j < cols; j++) {
-			printf("%4u", b[i][j]);
+			printf("%5u", b[i][j]);
 		}
 		printf("\n");
 	}

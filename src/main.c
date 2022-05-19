@@ -11,8 +11,17 @@ int main() {
 	uint16_t (*gameboard)[cols] = (uint16_t (*)[cols])create_board(rows, cols, 1);
 	uint16_t (*scoreboard)[cols] = (uint16_t (*)[cols])create_board(rows, cols, 0);
 
-	gameboard[9][9] = 10;
-	gameboard[8][9] = 10;
+	gameboard[9][9] = 0;
+	gameboard[8][9] = 0;
+	gameboard[7][9] = 0;
+	gameboard[6][9] = 0;
+	gameboard[5][9] = 0;
+	gameboard[5][4] = 10;
+	//gameboard[8][9] = 100;
+	//gameboard[7][9] = 100;
+	//gameboard[6][9] = 100;
+	//gameboard[5][9] = 100;
+	//gameboard[17][19] = 2;
 	//gameboard[5][6] = 6;
 	//gameboard[5][7] = 0;
 
