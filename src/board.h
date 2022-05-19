@@ -6,7 +6,7 @@
 
 
 typedef struct Ship {
-	uint8_t size;
+	uint16_t size;
 	bool sunk;
 } Ship;
 

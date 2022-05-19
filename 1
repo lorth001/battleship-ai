@@ -2,31 +2,41 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include "board.h"
+#include "ai.h"
 
 
-Ship Carrier = { .size = 5, .sunk = false };
-Ship Battleship = { .size = 4, .sunk = false };
-Ship Submarine = { .size = 3, .sunk = false };
-Ship Destroyer = { .size = 3, .sunk = false };
-Ship PatrolBoat = { .size = 2, .sunk = false };
+int main() {
+	uint8_t rows = 10;
+	uint8_t cols = 10;
+	uint16_t (*gameboard)[cols] = (uint16_t (*)[cols])create_board(rows, cols, 1);
+	uint16_t (*scoreboard)[cols] = (uint16_t (*)[cols])create_board(rows, cols, 0);
 
-uint16_t *create_board(uint8_t rows, uint8_t cols, uint8_t init_value) {
-	uint16_t (*board)[cols] = malloc((cols * rows) * sizeof(*board));
-	if (board == NULL) exit(1);
+	gameboard[5][5] = 3;
+	gameboard[5][6] = 3;
+	gameboard[5][7] = 0;
 
-	for (uint8_t i = 0; i < rows; i++) {
-		for (uint8_t j = 0; j < cols; j++) {
-			board[i][j] = init_value;
-		}
+	extern Ship Carrier;
+	extern Ship Battleship;
+	extern Ship Submarine;
+	extern Ship Destroyer;
+	extern Ship PatrolBoat;
+
+	Ship fleet[SHIP_COUNT] = { Carrier, Battleship, Submarine, Destroyer, PatrolBoat };
+	//Ship fleet[SHIP_COUNT] = { Submarine };
+
+	for (uint8_t ship = 0; ship < SHIP_COUNT; ship++) {
+		Ship target_ship = fleet[ship];
+		evaluate(rows, cols, gameboard, scoreboard, target_ship.size);
 	}
-	return &board[0][0];
-}
 
-void print_board(uint8_t rows, uint8_t cols, uint16_t b[rows][cols]) {
-	for (uint8_t i = 0; i < rows; i++) {
-		for (uint8_t j = 0; j < cols; j++) {
-			printf("%u2s", b[i][j]);
-		}
-		printf("\n");
-	}
+	print_board(rows, cols, gameboard);
+	printf("\n");
+	print_board(rows, cols, scoreboard);
+
+	free(gameboard);
+	gameboard = NULL;
+	free(scoreboard);
+	scoreboard = NULL;
+
+	return 0;
 }

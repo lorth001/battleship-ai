@@ -10,7 +10,11 @@ int main() {
 	uint8_t cols = 10;
 	uint16_t (*gameboard)[cols] = (uint16_t (*)[cols])create_board(rows, cols, 1);
 	uint16_t (*scoreboard)[cols] = (uint16_t (*)[cols])create_board(rows, cols, 0);
-	gameboard[5][5] = 0;
+
+	gameboard[9][9] = 10;
+	gameboard[8][9] = 10;
+	//gameboard[5][6] = 6;
+	//gameboard[5][7] = 0;
 
 	extern Ship Carrier;
 	extern Ship Battleship;
@@ -19,6 +23,7 @@ int main() {
 	extern Ship PatrolBoat;
 
 	Ship fleet[SHIP_COUNT] = { Carrier, Battleship, Submarine, Destroyer, PatrolBoat };
+	//Ship fleet[SHIP_COUNT] = { Submarine };
 
 	for (uint8_t ship = 0; ship < SHIP_COUNT; ship++) {
 		Ship target_ship = fleet[ship];
@@ -26,6 +31,7 @@ int main() {
 	}
 
 	print_board(rows, cols, gameboard);
+	printf("\n");
 	print_board(rows, cols, scoreboard);
 
 	free(gameboard);
