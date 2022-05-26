@@ -1,22 +1,20 @@
 #include <stdio.h>
-#include <stdint.h>
 #include <stdlib.h>
 #include "board.h"
 #include "ai.h"
 
 
 int main() {
-	uint8_t rows = 10;
-	uint8_t cols = 10;
-	uint16_t (*gameboard)[cols] = (uint16_t (*)[cols])create_board(rows, cols, 1);
-	uint16_t (*scoreboard)[cols] = (uint16_t (*)[cols])create_board(rows, cols, 0);
+	int rows = 10;
+	int cols = 10;
+	int (*gameboard)[cols] = (int (*)[cols])create_board(rows, cols, 1);
+	int (*scoreboard)[cols] = (int (*)[cols])create_board(rows, cols, 0);
 
-	gameboard[9][9] = 0;
-	gameboard[8][9] = 0;
-	gameboard[7][9] = 0;
-	gameboard[6][9] = 0;
-	gameboard[5][9] = 0;
-	gameboard[5][4] = 10;
+	gameboard[9][9] = 10;
+	gameboard[8][9] = 10;
+	gameboard[7][9] = 10;
+	gameboard[6][9] = 10;
+	//gameboard[5][9] = 0;
 	//gameboard[8][9] = 100;
 	//gameboard[7][9] = 100;
 	//gameboard[6][9] = 100;
@@ -34,7 +32,7 @@ int main() {
 	Ship fleet[SHIP_COUNT] = { Carrier, Battleship, Submarine, Destroyer, PatrolBoat };
 	//Ship fleet[SHIP_COUNT] = { Submarine };
 
-	for (uint8_t ship = 0; ship < SHIP_COUNT; ship++) {
+	for (int ship = 0; ship < SHIP_COUNT; ship++) {
 		Ship target_ship = fleet[ship];
 		evaluate(rows, cols, gameboard, scoreboard, target_ship.size);
 	}

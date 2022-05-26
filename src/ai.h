@@ -1,11 +1,10 @@
 #ifndef AI_H
 #define AI_H
-#include <stdint.h>
 
 
-uint8_t probability(uint8_t rows, uint8_t cols, uint16_t gb[rows][cols]);
+int probability(int rows, int cols, int gb[rows][cols]);
 
-void evaluate(uint8_t rows, uint8_t cols, uint16_t gb[rows][cols], uint16_t sb[rows][cols], uint8_t size);
+void evaluate(int rows, int cols, int gb[rows][cols], int sb[rows][cols], int size);
 
 
 #endif
